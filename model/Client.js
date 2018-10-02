@@ -1,5 +1,5 @@
 const path = require('path')
-const p = require('phin').promisified
+const c = require('centra')
 
 const getUUIDFromTarget = require(path.join(__dirname, '..', 'utility', 'uuidTarget.js'))
 
@@ -25,15 +25,17 @@ class Client {
 	async getPlayer(p1, p2) {
 		let targetUUID = await getUUIDFromTarget(p1, p2)
 
-		let response = JSON.parse((await p({
-			'url': baseURL + 'player?uuid=' + targetUUID + '&key=' + this.key,
-			'method': 'GET'
-		})).body)
+		const res = await c(baseURL).path('/player').query({
+			'uuid': targetUUID,
+			'key': this.key
+		}).send()
 
-		if (response.success) {
-			return response
+		const parsed = await res.json()
+
+		if (parsed.success) {
+			return parsed
 		}
-		else throw (response.cause || response)
+		else throw new Error(parsed.cause || response)
 	}
 
 	/**
@@ -44,15 +46,17 @@ class Client {
 	async getSession(p1, p2) {
 		let targetUUID = await getUUIDFromTarget(p1, p2)
 
-		let response = JSON.parse((await p({
-			'url': baseURL + 'session?uuid=' + targetUUID + '&key=' + this.key,
-			'method': 'GET'
-		})).body)
+		const res = await c(baseURL).path('/session').query({
+			'uuid': targetUUID,
+			'key': this.key
+		}).send()
 
-		if (response.success) {
-			return response
+		const parsed = await res.json()
+
+		if (parsed.success) {
+			return parsed
 		}
-		else throw (response.cause || response)
+		else throw new Error(parsed.cause || response)
 	}
 
 	/**
@@ -63,15 +67,17 @@ class Client {
 	async getFriends(p1, p2) {
 		let targetUUID = await getUUIDFromTarget(p1, p2)
 
-		let response = JSON.parse((await p({
-			'url': baseURL + 'friends?uuid=' + targetUUID + '&key=' + this.key,
-			'method': 'GET'
-		})).body)
+		const res = await c(baseURL).path('/friends').query({
+			'uuid': targetUUID,
+			'key': this.key
+		}).send()
 
-		if (response.success) {
-			return response
+		const parsed = await res.json()
+
+		if (parsed.success) {
+			return parsed
 		}
-		else throw (response.cause || response)
+		else throw new Error(parsed.cause || response)
 	}
 
 	/**
@@ -79,15 +85,17 @@ class Client {
 	* @param {string} guildID - ID of the guild. (Guilds can be searched with the Client.findGuild method.)
 	*/
 	async getGuild(guildID) {
-		let response = JSON.parse((await p({
-			'url': baseURL + 'guild?id=' + guildID + '&key=' + this.key,
-			'method': 'GET'
-		})).body)
+		const res = await c(baseURL).path('/guild').query({
+			'id': guildID,
+			'key': this.key
+		}).send()
 
-		if (response.success) {
-			return response
+		const parsed = await res.json()
+
+		if (parsed.success) {
+			return parsed
 		}
-		else throw (response.cause || response)
+		else throw new Error(parsed.cause || response)
 	}
 
 	/**
@@ -105,75 +113,87 @@ class Client {
 			targetIdentifier = identifier
 		}
 
-		let response = JSON.parse((await p({
-			'url': baseURL + 'findGuild?' + (targetType === 'name' ? 'byName' : 'byUuid') + '=' + targetIdentifier + '&key=' + this.key,
-			'method': 'GET'
-		})).body)
-
-		if (response.success) {
-			return response
+		const query = {
+			'key': this.key
 		}
-		else throw (response.cause || response)
+
+		if (targetType === 'name') {
+			query['byName'] = targetIdentifier
+		}
+		else query['byUuid'] = targetIdentifier
+
+		const res = await c(baseURL).path('/findGuild').query(query).send()
+
+		const parsed = await res.json()
+
+		if (parsed.success) {
+			return parsed
+		}
+		else throw new Error(parsed.cause || response)
 	}
 
 	/**
 	* Get Watchdog statistics.
 	*/
 	async getWatchdogStats() {
-		let response = JSON.parse((await p({
-			'url': baseURL + 'watchdogstats?key=' + this.key,
-			'method': 'GET'
-		})).body)
+		const res = await c(baseURL).path('/watchdogstats').query({
+			'key': this.key
+		}).send()
 
-		if (response.success) {
-			return response
+		const parsed = await res.json()
+
+		if (parsed.success) {
+			return parsed
 		}
-		else throw (response.cause || response)
+		else throw new Error(parsed.cause || response)
 	}
 
 	/**
 	* Get leaderboards.
 	*/
 	async getLeaderboards() {
-		let response = JSON.parse((await p({
-			'url': baseURL + 'leaderboards?key=' + this.key,
-			'method': 'GET'
-		})).body)
+		const res = await c(baseURL).path('/leaderboards').query({
+			'key': this.key
+		}).send()
 
-		if (response.success) {
-			return response
+		const parsed = await res.json()
+
+		if (parsed.success) {
+			return parsed
 		}
-		else throw (response.cause || response)
+		else throw new Error(parsed.cause || response)
 	}
 
 	/**
 	* Get API key information.
 	*/
 	async getKey() {
-		let response = JSON.parse((await p({
-			'url': baseURL + 'key?key=' + this.key,
-			'method': 'GET'
-		})).body)
+		const res = await c(baseURL).path('/key').query({
+			'key': this.key
+		}).send()
 
-		if (response.success) {
-			return response
+		const parsed = await res.json()
+
+		if (parsed.success) {
+			return parsed
 		}
-		else throw (response.cause || response)
+		else throw new Error(parsed.cause || response)
 	}
 
 	/**
 	* Get network game boosters.
 	*/
 	async getBoosters() {
-		let response = JSON.parse((await p({
-			'url': baseURL + 'boosters?key=' + this.key,
-			'method': 'GET'
-		})).body)
+		const res = await c(baseURL).path('/boosters').query({
+			'key': this.key
+		}).send()
 
-		if (response.success) {
-			return response
+		const parsed = await res.json()
+
+		if (parsed.success) {
+			return parsed
 		}
-		else throw (response.cause || response)
+		else throw new Error(parsed.cause || response)
 	}
 }
 

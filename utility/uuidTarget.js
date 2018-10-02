@@ -1,4 +1,4 @@
-const p = require('phin').promisified
+const c = require('centra')
 
 module.exports = async (p1, p2) => {
 	const targetType = (p2 ? p1 : 'uuid')
@@ -7,11 +7,7 @@ module.exports = async (p1, p2) => {
 	let targetUUID = (targetType === 'uuid' ? identifier : null)
 
 	if (targetType === 'name') {
-		let playerResolution = await p({
-			'url': 'https://api.mojang.com/profiles/minecraft',
-			'method': 'POST',
-			'data': JSON.stringify([identifier])
-		})
+		let playerResolution = await c('https://api.mojang.com/profiles/minecraft', 'POST').body([identifier]).send()
 
 		if (playerResolution.statusCode === 200) {
 			let body

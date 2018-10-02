@@ -1,10 +1,11 @@
 {
   "name": "hypixel-api",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A light Hypixel Public API client for Node",
-  "main": "index.js",
+  "main": "model/Client.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "echo \"No test has been built yet.\"",
+    "gendoc": "rm -r docs || true && jsdoc -R README.md -d ./docs model/Client.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,9 @@
   },
   "homepage": "https://github.com/ethanent/hypixel-api#readme",
   "dependencies": {
-    "phin": "^2.4.18"
+    "centra": "^2.0.2"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.5.5"
   }
 }
