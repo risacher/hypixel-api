@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ethanent/hypixel-api.git"
+    "url": "git+https://github.com/risacher/hypixel-api.git"
   },
   "keywords": [
     "hypixel",
@@ -19,14 +19,14 @@
     "api",
     "minecraft"
   ],
-  "author": "Ethan Davis",
+  "author": ["Ethan Davis", "Dan Risacher"],
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/ethanent/hypixel-api/issues"
+    "url": "https://github.com/risacher/hypixel-api/issues"
   },
-  "homepage": "https://github.com/ethanent/hypixel-api#readme",
+  "homepage": "https://github.com/risacher/hypixel-api#readme",
   "dependencies": {
-    "centra": "^2.0.2"
+    "centra": "risacher/centra"
   },
   "devDependencies": {
     "jsdoc": "^3.5.5"
