@@ -195,6 +195,23 @@ class Client {
 		}
 		else throw new Error(parsed.cause || response)
 	}
+
+        /**
+	* Get skyblock profile
+	*/
+	async getSkyBlockProfile(profileId) {
+		const res = await c(baseURL).path('/skyblock/profile').query({
+		    'key': this.key,
+		    'profile': profileId
+		}).send()
+
+		const parsed = await res.json()
+
+		if (parsed.success) {
+			return parsed
+		}
+		else throw new Error(parsed.cause || response)
+	}
 }
 
 module.exports = Client

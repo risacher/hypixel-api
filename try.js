@@ -2,12 +2,23 @@ const util = require('util')
 
 const HypixelAPI = require('./')
 
-const client = new HypixelAPI('e7aba9ba-3a2e-498f-8cd7-2ece65457a19')
+const client = new HypixelAPI('PUT YOUR API KEY HERE')
 
 ;(async function() {
-	console.log(util.inspect(await client.getPlayer('name', 'ethanent'), {
-		'depth': Infinity
-	}))
+
+    client.getPlayer('name', 'redplasticstraw')
+        .then((p) => {
+
+            console.log(util.inspect(p, { 'depth': Infinity}));
+            //console.log(util.inspect(p.player.stats.SkyBlock.profiles, { 'depth': Infinity}));
+            return {uuid: p.player.uuid, profid: Object.keys(p.player.stats.SkyBlock.profiles)[0]};
+        }).then(async (shlub) => {
+            console.log(shlub.uuid);
+            const profl = await client.getSkyBlockProfile(shlub.profid);
+            console.log(util.inspect(profl.profile.members[shlub.uuid].slayer_bosses, {'depth': 3} ));
+//            console.log(util.inspect(Object.entries(profl.profile.members)[0], {'depth': 2} ));
+        })
+
 
 	/*console.log(util.inspect(await client.findGuild('memberName', 'ethanent'), {
 		'depth': Infinity
