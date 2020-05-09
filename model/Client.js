@@ -35,7 +35,7 @@ class Client {
 		if (parsed.success) {
 			return parsed
 		}
-		else throw new Error(parsed.cause || response)
+		else throw new Error(parsed.cause || res)
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Client {
 		if (parsed.success) {
 			return parsed
 		}
-		else throw new Error(parsed.cause || response)
+		else throw new Error(parsed.cause || res)
 	}
 
 	/**
@@ -77,7 +77,7 @@ class Client {
 		if (parsed.success) {
 			return parsed
 		}
-		else throw new Error(parsed.cause || response)
+		else throw new Error(parsed.cause || res)
 	}
 
 	/**
@@ -95,7 +95,7 @@ class Client {
 		if (parsed.success) {
 			return parsed
 		}
-		else throw new Error(parsed.cause || response)
+		else throw new Error(parsed.cause || res)
 	}
 
 	/**
@@ -129,7 +129,7 @@ class Client {
 		if (parsed.success) {
 			return parsed
 		}
-		else throw new Error(parsed.cause || response)
+		else throw new Error(parsed.cause || res)
 	}
 
 	/**
@@ -145,7 +145,7 @@ class Client {
 		if (parsed.success) {
 			return parsed
 		}
-		else throw new Error(parsed.cause || response)
+		else throw new Error(parsed.cause || res)
 	}
 
 	/**
@@ -161,7 +161,7 @@ class Client {
 		if (parsed.success) {
 			return parsed
 		}
-		else throw new Error(parsed.cause || response)
+		else throw new Error(parsed.cause || res)
 	}
 
 	/**
@@ -177,7 +177,7 @@ class Client {
 		if (parsed.success) {
 			return parsed
 		}
-		else throw new Error(parsed.cause || response)
+		else throw new Error(parsed.cause || res)
 	}
 
 	/**
@@ -193,7 +193,7 @@ class Client {
 		if (parsed.success) {
 			return parsed
 		}
-		else throw new Error(parsed.cause || response)
+		else throw new Error(parsed.cause || res)
 	}
 
         /**
@@ -210,7 +210,7 @@ class Client {
 		if (parsed.success) {
 			return parsed
 		}
-		else throw new Error(parsed.cause || response)
+		else throw new Error(parsed.cause || res)
 	}
 }
 
